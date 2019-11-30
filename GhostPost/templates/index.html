@@ -1,0 +1,31 @@
+<h1> Roasts and Boasts </h1>
+
+<a href="/addpost/">Post a Boast or Roast</a>
+<br>
+<br>
+<a href="/">All</a>
+<a href="/boasts/">Boasts</a>
+<a href="/roasts/">Roasts</a>
+
+<a href="{{ time }}">Most Recent</a>
+<a href="{{ votes }}">By Votes</a>
+<br>
+<br>
+{% for post in posts %}
+    {{ post.content }}
+    {{ post.upvotes }}
+    {{ post.downvotes }}
+
+    <form method='POST' action="/upvote/">
+        {% csrf_token %}
+        <input type="hidden" value={{ post.id }} name="id"></input>
+        <input type="submit" value="Upvote"></input>
+
+    </form>
+    <form method='POST' action="/downvote/">
+        {% csrf_token %}
+        <input type="hidden" value={{ post.id }} name="id"></input>
+        <input type="submit" value="Downvote"></input>
+    </form>
+    <br>
+{% endfor %}
