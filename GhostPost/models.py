@@ -1,3 +1,7 @@
+"""
+Project completed with the help of Joseph H. and Mark Harsley.
+"""
+
 from django.db import models
 from django.utils.timezone import now
 

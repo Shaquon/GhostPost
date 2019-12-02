@@ -1,14 +1,15 @@
+<body style="background-color: #eeeeee">
 <h1> Roasts and Boasts </h1>
-
-<a href="/addpost/">Post a Boast or Roast</a>
+<a href="/addpost/" style="border: 1px solid black; padding: 5px"> Click here to a Post a Boast or Roast</a>
 <br>
 <br>
-<a href="/">All</a>
-<a href="/boasts/">Boasts</a>
-<a href="/roasts/">Roasts</a>
+<button style="padding:5px; border-radius:5px; width: 35px"> <a href="/">All</a></button>
+<button style="padding:5px; border-radius:5px; width: 65px"> <a href="/boasts/">Boasts</a></button>
+<button style="padding:5px; border-radius:5px; width: 65px"> <a href="/roasts/">Roasts</a></button>
 
-<a href="{{ time }}">Most Recent</a>
-<a href="{{ votes }}">By Votes</a>
+<button style="padding:5px; border-radius:5px; width: 85px"><a href="{{ time }}">Most Recent</a></button>
+<button style="padding:5px; border-radius:5px; width: 65px"><a href="{{ votes }}">By Votes</a></button>
+<hr>
 <br>
 <br>
 {% for post in posts %}
@@ -28,4 +29,6 @@
         <input type="submit" value="Downvote"></input>
     </form>
     <br>
+    <hr>
 {% endfor %}
+</body>
