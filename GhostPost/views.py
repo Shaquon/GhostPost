@@ -45,9 +45,9 @@ def add_post_view(request):
                 downvotes=0,
                 submit_time=now()
             )
-            messages.add_message(request, messages.INFO)
+            messages.add_message(request, messages.INFO, 'posted')
 
-        return HttpResponseRedirect(reverse('homepage'))
+        return HttpResponseRedirect(reverse('home'))
 
     form = add_post_form()
     return render(request, html, {'form': form})
@@ -94,9 +94,9 @@ def roasts_time_view(request):
 def boast_votes_view(request):
     html = 'index.html'
 
-    boasts = Post.objects.sorted(
+    posts = sorted(
         Post.objects.filter(is_boast=True),
-        key=sorter,
+        key=lambda x: x.upvotes - x.downvotes,
         reverse=True
         )
     return render(
@@ -111,9 +111,9 @@ def boast_votes_view(request):
 def roast_votes_view(request):
     html = 'index.html'
 
-    posts = Post.objects.sorted(
-        Post.objects.filter(is_boast=False),
-        key=sorter,
+    posts = sorted(
+        Post.objects.filter(is_boast=False).exists(),
+        key=lambda x: x.upvotes - x.downvotes,
         reverse=True
         )
     return render(
